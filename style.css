@@ -1,0 +1,23 @@
+body {
+	font-family: Arial;
+	background: #0b0b0b;
+	color: white;
+	margin: 0;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	border-bottom: 2px solid purple;
+}
+
+nav a {
+	margin-left: 20px;
+	color: white;
+	text-decoration: none;
+}
+
+section {
+	padding: 80px;
+}
