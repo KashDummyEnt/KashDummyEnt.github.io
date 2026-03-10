@@ -43,13 +43,13 @@ header
 	background:#b100ff;
 }
 
-/* NAV BUTTONS */
+/* BUTTON CONTAINER */
 
 .nav-buttons
 {
 	display:flex;
 	justify-content:center;
-	gap:25px;
+	gap:30px;
 	margin-top:40px;
 }
 
@@ -57,15 +57,16 @@ header
 
 .nav-btn
 {
-	padding:12px 30px;
+	padding:14px 36px;
 	border-radius:8px;
 	text-decoration:none;
 	font-weight:bold;
 	color:white;
+	font-size:16px;
 	transition:0.2s;
 }
 
-/* BUTTON COLORS */
+/* COLORS */
 
 .about
 {
@@ -74,7 +75,7 @@ header
 
 .work
 {
-	background:#005eff;
+	background:#0066ff;
 }
 
 .projects
@@ -82,7 +83,7 @@ header
 	background:#ff006a;
 }
 
-/* HOVER EFFECT */
+/* HOVER */
 
 .nav-btn:hover
 {
