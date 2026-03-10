@@ -173,5 +173,10 @@ p
 	box-shadow:0 0 15px #b100ff;
 }
 
-
+.home-logo
+{
+	width:420px;
+	max-width:90%;
+	margin-bottom:30px;
+}
 
