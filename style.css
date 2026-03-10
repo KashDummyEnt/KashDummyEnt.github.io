@@ -6,13 +6,14 @@ body
 	color:white;
 }
 
+/* HEADER */
+
 header
 {
 	display:flex;
 	justify-content:space-between;
 	align-items:center;
 	padding:20px 40px;
-	border-bottom:2px solid #b100ff;
 }
 
 .logo
@@ -21,18 +22,75 @@ header
 	font-weight:bold;
 }
 
-nav a
+.top-contact a
 {
-	margin-left:20px;
-	text-decoration:none;
 	color:white;
+	text-decoration:none;
 	font-size:14px;
 }
 
-nav a:hover
+.top-contact a:hover
 {
 	color:#b100ff;
 }
+
+/* DIVIDER */
+
+.divider
+{
+	width:100%;
+	height:2px;
+	background:#b100ff;
+}
+
+/* NAV BUTTONS */
+
+.nav-buttons
+{
+	display:flex;
+	justify-content:center;
+	gap:25px;
+	margin-top:40px;
+}
+
+/* BUTTON STYLE */
+
+.nav-btn
+{
+	padding:12px 30px;
+	border-radius:8px;
+	text-decoration:none;
+	font-weight:bold;
+	color:white;
+	transition:0.2s;
+}
+
+/* BUTTON COLORS */
+
+.about
+{
+	background:#7a00ff;
+}
+
+.work
+{
+	background:#005eff;
+}
+
+.projects
+{
+	background:#ff006a;
+}
+
+/* HOVER EFFECT */
+
+.nav-btn:hover
+{
+	transform:translateY(-3px);
+	filter:brightness(1.2);
+}
+
+/* MAIN CONTENT */
 
 main
 {
@@ -52,24 +110,4 @@ p
 {
 	font-size:18px;
 	line-height:1.6;
-}
-
-.work-list
-{
-	list-style:none;
-	padding:0;
-}
-
-.work-list li
-{
-	margin:10px 0;
-	font-size:18px;
-}
-
-.project
-{
-	margin:40px 0;
-	padding:20px;
-	border:1px solid #333;
-	border-radius:8px;
 }
