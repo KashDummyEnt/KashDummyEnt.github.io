@@ -43,7 +43,7 @@ header
 	background:#b100ff;
 }
 
-/* BUTTON CONTAINER */
+/* NAV BUTTON CONTAINER */
 
 .nav-buttons
 {
@@ -53,7 +53,7 @@ header
 	margin-top:40px;
 }
 
-/* BUTTON STYLE */
+/* DEFAULT BUTTON STYLE */
 
 .nav-btn
 {
@@ -63,24 +63,8 @@ header
 	font-weight:bold;
 	color:white;
 	font-size:16px;
+	background:#2a2a2a;
 	transition:0.2s;
-}
-
-/* COLORS */
-
-.about
-{
-	background:#7a00ff;
-}
-
-.work
-{
-	background:#0066ff;
-}
-
-.projects
-{
-	background:#ff006a;
 }
 
 /* HOVER */
@@ -89,6 +73,13 @@ header
 {
 	transform:translateY(-3px);
 	filter:brightness(1.2);
+}
+
+/* ACTIVE PAGE BUTTON */
+
+.nav-btn.active
+{
+	background:#b100ff;
 }
 
 /* MAIN CONTENT */
@@ -111,4 +102,24 @@ p
 {
 	font-size:18px;
 	line-height:1.6;
+}
+
+.work-list
+{
+	list-style:none;
+	padding:0;
+}
+
+.work-list li
+{
+	margin:10px 0;
+	font-size:18px;
+}
+
+.project
+{
+	margin:40px 0;
+	padding:20px;
+	border:1px solid #333;
+	border-radius:8px;
 }
