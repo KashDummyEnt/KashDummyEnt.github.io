@@ -134,7 +134,7 @@ header
 main
 {
 	max-width:900px;
-	margin:10px auto 200px auto;
+	margin:10px auto 20px auto;
 	text-align:center;
 	padding:20px;
 	box-sizing:border-box;
@@ -178,9 +178,10 @@ p
 .project-grid
 {
 	display:grid;
-	grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+	grid-template-columns:repeat(auto-fit, 250px);
 	gap:40px;
 	margin-top:20px;
+	justify-content:center;
 }
 
 /* PROJECT CARD */
