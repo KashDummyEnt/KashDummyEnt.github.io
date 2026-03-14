@@ -78,6 +78,9 @@ header
 	justify-content:center;
 	gap:30px;
 	margin-top:40px;
+	max-width:600px;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 /* DEFAULT BUTTON STYLE */
