@@ -87,9 +87,13 @@ header
 
 .nav-btn
 {
-	display:inline-flex;
-	width:160px;
+	flex:1;
+	max-width:160px;
 	height:48px;
+
+	display:flex;
+	justify-content:center;
+	align-items:center;
 
 	border-radius:8px;
 	text-decoration:none;
@@ -99,9 +103,6 @@ header
 
 	background:#2a2a2a;
 	transition:0.2s;
-
-	justify-content:center;
-	align-items:center;
 }
 
 /* HOVER */
