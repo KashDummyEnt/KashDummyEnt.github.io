@@ -3,6 +3,8 @@ html
 	overflow-y:scroll;
 }
 
+/* SCROLLBAR */
+
 ::-webkit-scrollbar
 {
 	width:10px;
@@ -74,26 +76,21 @@ header
 
 .nav-buttons
 {
-	display:flex;
-	justify-content:center;
+	display:grid;
+	grid-template-columns:repeat(3, 170px);
 	gap:30px;
+	justify-content:center;
 	margin-top:40px;
-	max-width:600px;
-	margin-left:auto;
-	margin-right:auto;
 }
 
-/* DEFAULT BUTTON STYLE */
+/* NAV BUTTON */
 
 .nav-btn
 {
-	flex:1;
-	max-width:160px;
-	height:48px;
-
 	display:flex;
 	justify-content:center;
 	align-items:center;
+	height:48px;
 
 	border-radius:8px;
 	text-decoration:none;
@@ -103,6 +100,7 @@ header
 
 	background:#2a2a2a;
 	transition:0.2s;
+	box-sizing:border-box;
 }
 
 /* HOVER */
@@ -216,4 +214,3 @@ p
 	max-width:90%;
 	margin-bottom:10px;
 }
-
