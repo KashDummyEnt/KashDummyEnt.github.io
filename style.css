@@ -84,16 +84,19 @@ header
 
 .nav-btn
 {
+	display:inline-flex;
 	width:160px;
-	padding:14px 0;
+	height:48px;
+
 	border-radius:8px;
 	text-decoration:none;
 	font-weight:bold;
 	color:white;
 	font-size:16px;
+
 	background:#2a2a2a;
 	transition:0.2s;
-	display:flex;
+
 	justify-content:center;
 	align-items:center;
 }
