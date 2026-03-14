@@ -6,7 +6,22 @@ body
 	font-family:Arial, Helvetica, sans-serif;
 	background:#070707;
 	color:white;
+}
+
+body
+{
+	display:flex;
+	flex-direction:column;
 	overflow:hidden;
+}
+
+/* SCROLL AREA ONLY BELOW HEADER + DIVIDER */
+
+.content-scroll
+{
+	flex:1;
+	min-height:0;
+	overflow-y:auto;
 }
 
 /* SCROLLBAR */
@@ -40,6 +55,7 @@ header
 	justify-content:space-between;
 	align-items:center;
 	padding:20px 40px;
+	flex-shrink:0;
 }
 
 .logo img
@@ -68,14 +84,7 @@ header
 	width:100%;
 	height:2px;
 	background:#b100ff;
-}
-
-/* SCROLL AREA BELOW DIVIDER */
-
-.content-scroll
-{
-	height:calc(100vh - 92px);
-	overflow-y:auto;
+	flex-shrink:0;
 }
 
 /* NAV BUTTON CONTAINER */
@@ -87,6 +96,7 @@ header
 	gap:30px;
 	justify-content:center;
 	margin-top:40px;
+	flex-shrink:0;
 }
 
 /* NAV BUTTON */
@@ -97,27 +107,21 @@ header
 	justify-content:center;
 	align-items:center;
 	height:48px;
-
 	border-radius:8px;
 	text-decoration:none;
 	font-weight:bold;
 	color:white;
 	font-size:16px;
-
 	background:#2a2a2a;
 	transition:0.2s;
 	box-sizing:border-box;
 }
-
-/* HOVER */
 
 .nav-btn:hover
 {
 	transform:translateY(-3px);
 	filter:brightness(1.2);
 }
-
-/* ACTIVE PAGE BUTTON */
 
 .nav-btn.active
 {
@@ -129,10 +133,11 @@ header
 main
 {
 	max-width:900px;
-	margin:10px auto;
+	margin:10px auto 0 auto;
 	text-align:center;
 	padding:20px;
 	box-sizing:border-box;
+	width:100%;
 }
 
 h1
@@ -189,8 +194,6 @@ p
 	transition:0.2s;
 }
 
-/* IMAGE */
-
 .project-card img
 {
 	width:100%;
@@ -199,15 +202,12 @@ p
 	display:block;
 }
 
-/* TITLE */
-
 .project-card h2
 {
 	padding:15px;
 	font-size:18px;
+	margin:0;
 }
-
-/* HOVER EFFECT */
 
 .project-card:hover
 {
