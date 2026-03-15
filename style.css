@@ -65,6 +65,14 @@ header
 	display:block;
 }
 
+.home-logo
+{
+	width:325px;
+	max-width:90%;
+	margin-bottom:-40px;
+}
+
+
 .top-contact a
 {
 	color:white;
@@ -239,11 +247,5 @@ p
 	box-shadow:0 0 15px #b100ff;
 }
 
-.home-logo
-{
-	width:325px;
-	max-width:90%;
-	margin-bottom:10px;
-}
 
 
