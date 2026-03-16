@@ -292,6 +292,11 @@ p
 	display:block;
 }
 
+.roblox .icon img
+{
+	width:24px;
+}
+
 /* TEXT SIDE */
 
 .social-btn .label
