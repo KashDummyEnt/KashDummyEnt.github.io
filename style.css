@@ -254,7 +254,7 @@ p
 	display:flex;
 	justify-content:center;
 	gap:16px;
-	margin-top:25px;
+	margin-top:10px;
 }
 
 /* BUTTON */
@@ -262,65 +262,56 @@ p
 .social-btn
 {
 	display:flex;
-	align-items:center;
-	width:170px;
-	height:36px;
+	width:180px;
+	height:38px;
 	border-radius:6px;
 	overflow:hidden;
 	text-decoration:none;
 	font-weight:bold;
 	font-size:14px;
 	color:white;
-	background:#2a2a2a;
-	transition:0.2s;
 }
 
 /* ICON SIDE */
 
-.social-btn img
+.social-btn .icon
 {
-	height:18px;
-	width:18px;
-	margin:0 auto;
-}
-
-.social-btn::before
-{
-	content:"";
 	width:42px;
-	height:100%;
+	min-width:42px;
 	background:#3a3a3a;
 	display:flex;
 	align-items:center;
 	justify-content:center;
 }
 
-/* TEXT */
+.social-btn .icon img
+{
+	width:20px;
+	height:auto;
+	object-fit:contain;
+	display:block;
+}
 
-.social-btn span
+/* TEXT SIDE */
+
+.social-btn .label
 {
 	flex:1;
-	text-align:center;
+	display:flex;
+	align-items:center;
+	justify-content:center;
 }
 
 /* COLORS */
 
-.social-btn.discord span
+.discord .label
 {
 	background:#5865F2;
-	height:100%;
-	display:flex;
-	align-items:center;
-	justify-content:center;
 }
 
-.social-btn.roblox span
+.roblox .label
 {
 	background:#e2231a;
-	height:100%;
-	display:flex;
-	align-items:center;
-	justify-content:center;
 }
 
 /* HOVER */
@@ -328,7 +319,7 @@ p
 .social-btn:hover
 {
 	transform:translateY(-2px);
-	filter:brightness(1.2);
+	filter:brightness(1.15);
+	transition:0.2s;
 }
-
 
