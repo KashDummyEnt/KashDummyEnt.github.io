@@ -33,11 +33,20 @@ function resizeCanvas()
 
 	canvas.style.width = "100%";
 	canvas.style.height = "100%";
-
-	createSnowflakes();
 }
 
-window.addEventListener("resize", resizeCanvas);
+// debounce resize (prevents mobile scroll spam)
+let resizeTimeout;
+
+window.addEventListener("resize", () =>
+{
+	clearTimeout(resizeTimeout);
+
+	resizeTimeout = setTimeout(() =>
+	{
+		resizeCanvas();
+	}, 150);
+});
 
 // =========================
 // CREATE SNOWFLAKES
@@ -113,4 +122,5 @@ function updateSnow(time)
 // =========================
 
 resizeCanvas();
+createSnowflakes();
 requestAnimationFrame(updateSnow);
