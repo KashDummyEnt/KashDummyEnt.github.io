@@ -164,7 +164,16 @@ function updateSnow(time)
 
 document.addEventListener("touchmove", (e) =>
 {
-	if (!e.target.closest(".content-scroll"))
+	const scrollContainer = e.target.closest(".content-scroll");
+
+	if (!scrollContainer)
+	{
+		e.preventDefault();
+		return;
+	}
+
+	// allow scrolling ONLY if content can actually scroll
+	if (scrollContainer.scrollHeight <= scrollContainer.clientHeight)
 	{
 		e.preventDefault();
 	}
