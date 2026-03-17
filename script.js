@@ -20,7 +20,7 @@ function createSnowflakes()
 {
 	snowflakes = [];
 
-	for (let i = 0; i < 120; i++)
+	for (let i = 0; i < 60; i++)
 	{
 		snowflakes.push({
 			x: Math.random() * canvas.width,
