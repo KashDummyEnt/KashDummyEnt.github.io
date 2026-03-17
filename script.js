@@ -1,23 +1,27 @@
 // =========================
-// OPTIMIZED SNOW SYSTEM
+// RESPONSIVE SNOW SYSTEM (FIXED)
 // =========================
 
 const canvas = document.getElementById("snow");
 const ctx = canvas.getContext("2d");
 
 let snowflakes = [];
-
-const isMobile = window.innerWidth < 768;
-
-// performance settings
-const SETTINGS =
-{
-	count: isMobile ? 35 : 70,
-	fps: isMobile ? 30 : 60,
-	scale: isMobile ? 0.6 : 1 // lower resolution on mobile
-};
-
 let lastTime = 0;
+
+// =========================
+// SETTINGS (dynamic)
+// =========================
+
+function getSettings()
+{
+	const isMobile = window.innerWidth < 768;
+
+	return {
+		count: isMobile ? 35 : 70,
+		fps: isMobile ? 30 : 60,
+		scale: isMobile ? 0.6 : 1
+	};
+}
 
 // =========================
 // RESIZE
@@ -25,24 +29,27 @@ let lastTime = 0;
 
 function resizeCanvas()
 {
+	const SETTINGS = getSettings();
 	const scale = SETTINGS.scale;
 
+	// internal resolution (performance)
 	canvas.width = window.innerWidth * scale;
 	canvas.height = window.innerHeight * scale;
 
+	// visual size
 	canvas.style.width = window.innerWidth + "px";
 	canvas.style.height = window.innerHeight + "px";
 
-	ctx.setTransform(scale, 0, 0, scale, 0, 0);
+	// reset transform
+	ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+	// apply scale
+	ctx.scale(scale, scale);
+
+	createSnowflakes();
 }
 
-window.addEventListener("resize", () =>
-{
-	resizeCanvas();
-	createSnowflakes();
-});
-
-resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 // =========================
 // CREATE SNOWFLAKES
@@ -50,13 +57,15 @@ resizeCanvas();
 
 function createSnowflakes()
 {
+	const SETTINGS = getSettings();
+
 	snowflakes = [];
 
 	for (let i = 0; i < SETTINGS.count; i++)
 	{
 		snowflakes.push({
-			x: Math.random() * canvas.width,
-			y: Math.random() * canvas.height,
+			x: Math.random() * window.innerWidth,
+			y: Math.random() * window.innerHeight,
 			radius: Math.random() * 2 + 0.8,
 			speedY: Math.random() * 1 + 0.4,
 			speedX: Math.random() * 0.6 - 0.3
@@ -70,6 +79,7 @@ function createSnowflakes()
 
 function updateSnow(time)
 {
+	const SETTINGS = getSettings();
 	const interval = 1000 / SETTINGS.fps;
 
 	if (time - lastTime < interval)
@@ -80,7 +90,7 @@ function updateSnow(time)
 
 	lastTime = time;
 
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
 	ctx.fillStyle = "white";
 
@@ -89,16 +99,16 @@ function updateSnow(time)
 		flake.y += flake.speedY;
 		flake.x += flake.speedX;
 
-		// reset when off screen
-		if (flake.y > canvas.height)
+		// reset vertically
+		if (flake.y > window.innerHeight)
 		{
 			flake.y = -5;
-			flake.x = Math.random() * canvas.width;
+			flake.x = Math.random() * window.innerWidth;
 		}
 
-		// slight horizontal wrap (prevents clustering)
-		if (flake.x > canvas.width) flake.x = 0;
-		if (flake.x < 0) flake.x = canvas.width;
+		// wrap horizontally
+		if (flake.x > window.innerWidth) flake.x = 0;
+		if (flake.x < 0) flake.x = window.innerWidth;
 
 		ctx.beginPath();
 		ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
@@ -112,5 +122,5 @@ function updateSnow(time)
 // INIT
 // =========================
 
-createSnowflakes();
+resizeCanvas();
 requestAnimationFrame(updateSnow);
