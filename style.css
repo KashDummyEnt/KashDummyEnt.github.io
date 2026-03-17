@@ -17,6 +17,8 @@ body
 	display:flex;
 	flex-direction:column;
 	overflow:hidden;
+
+	position:relative; /* <-- REQUIRED FIX */
 }
 body > *
 {
@@ -30,7 +32,7 @@ body > *
 
 #snow
 {
-	position:fixed;
+	position:absolute;
 	top:0;
 	left:0;
 	width:100%;
@@ -474,7 +476,6 @@ p
 
 @media (max-width: 768px)
 {
-	/* GLOBAL TEXT */
 	body
 	{
 		font-size:18px;
@@ -490,7 +491,6 @@ p
 		font-size:34px;
 	}
 
-	/* TOP BAR */
 	.topbar
 	{
 		padding:14px 16px;
@@ -506,14 +506,12 @@ p
 		font-size:16px;
 	}
 
-	/* LOGO */
 	.home-logo
 	{
 		width:300px;
 		margin-bottom:-30px;
 	}
 
-	/* SOCIAL BUTTONS */
 	.social-btn
 	{
 		width:90%;
@@ -521,7 +519,6 @@ p
 		font-size:15px;
 	}
 
-	/* PROJECT GRID (2 columns instead of weird 3 layout) */
 	.project-grid
 	{
 		grid-template-columns:1fr 1fr;
@@ -543,7 +540,6 @@ p
 		font-size:16px;
 	}
 
-	/* EXPERIENCE GRID */
 	.experience-grid
 	{
 		grid-template-columns:1fr;
@@ -556,5 +552,3 @@ p
 		padding:16px;
 	}
 }
-
-
