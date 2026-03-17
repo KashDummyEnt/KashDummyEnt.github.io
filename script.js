@@ -159,6 +159,18 @@ function updateSnow(time)
 }
 
 // =========================
+// TOUCH SCROLL LOCK (FIXES MOBILE URL BAR JITTER)
+// =========================
+
+document.addEventListener("touchmove", (e) =>
+{
+	if (!e.target.closest(".content-scroll"))
+	{
+		e.preventDefault();
+	}
+}, { passive: false });
+
+// =========================
 // INIT
 // =========================
 
