@@ -498,6 +498,7 @@ p
 	p
 	{
 		font-size:18px;
+		margin-bottom:20px;
 	}
 
 	h1
@@ -523,7 +524,7 @@ p
 	.home-logo
 	{
 		width:300px;
-		margin-bottom:-30px;
+		margin-bottom:-50px;
 	}
 
 	.social-btn
