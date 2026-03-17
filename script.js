@@ -8,6 +8,9 @@ const ctx = canvas.getContext("2d");
 let snowflakes = [];
 let lastTime = 0;
 
+let baseWidth = window.innerWidth;
+let baseHeight = window.innerHeight;
+
 // =========================
 // SETTINGS
 // =========================
@@ -23,29 +26,43 @@ function getSettings()
 }
 
 // =========================
-// RESIZE
+// RESIZE (LOCK HEIGHT)
 // =========================
 
-function resizeCanvas()
+function resizeCanvas(force = false)
 {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
+	const newWidth = window.innerWidth;
+	const newHeight = window.innerHeight;
+
+	// only update if width changes OR forced (prevents mobile scroll jitter)
+	if (!force && newWidth === baseWidth)
+	{
+		return;
+	}
+
+	baseWidth = newWidth;
+	baseHeight = newHeight;
+
+	canvas.width = baseWidth;
+	canvas.height = baseHeight;
 
 	canvas.style.width = "100%";
 	canvas.style.height = "100%";
 }
 
-// debounce resize (prevents mobile scroll spam)
-let resizeTimeout;
-
+// listen for REAL resizes only
 window.addEventListener("resize", () =>
 {
-	clearTimeout(resizeTimeout);
+	resizeCanvas();
+});
 
-	resizeTimeout = setTimeout(() =>
+// orientation change = force resize
+window.addEventListener("orientationchange", () =>
+{
+	setTimeout(() =>
 	{
-		resizeCanvas();
-	}, 150);
+		resizeCanvas(true);
+	}, 200);
 });
 
 // =========================
@@ -89,21 +106,19 @@ function updateSnow(time)
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	ctx.fillStyle = "#b100ff";
+	ctx.fillStyle = "white";
 
 	for (let flake of snowflakes)
 	{
 		flake.y += flake.speedY;
 		flake.x += flake.speedX;
 
-		// reset vertically (random X to prevent stacking)
 		if (flake.y > canvas.height)
 		{
 			flake.y = -5;
 			flake.x = Math.random() * canvas.width;
 		}
 
-		// reset horizontally (NOT wrap — prevents edge buildup)
 		if (flake.x > canvas.width || flake.x < 0)
 		{
 			flake.x = Math.random() * canvas.width;
@@ -121,6 +136,6 @@ function updateSnow(time)
 // INIT
 // =========================
 
-resizeCanvas();
+resizeCanvas(true);
 createSnowflakes();
 requestAnimationFrame(updateSnow);
