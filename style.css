@@ -364,17 +364,69 @@ p
 
 /* PAGE SWITCHING */
 
+#pages
+{
+	position:relative;
+	height:100%;
+	overflow:hidden;
+}
+
+/* BASE STATE */
+
 .page
 {
-	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+
 	opacity:0;
-	transform:translateY(10px);
-	transition:0.25s ease;
+	transform:translateX(100%);
+	pointer-events:none;
+
+	transition:
+		transform 0.45s cubic-bezier(.22,1,.36,1),
+		opacity 0.35s ease;
 }
+
+/* ACTIVE PAGE */
 
 .page.active
 {
-	display:block;
 	opacity:1;
-	transform:translateY(0);
+	transform:translateX(0);
+	pointer-events:auto;
+	z-index:2;
+}
+
+/* EXIT LEFT */
+
+.page.exit-left
+{
+	transform:translateX(-100%);
+	opacity:0;
+	z-index:1;
+}
+
+/* EXIT RIGHT */
+
+.page.exit-right
+{
+	transform:translateX(100%);
+	opacity:0;
+	z-index:1;
+}
+
+/* ENTER FROM LEFT */
+
+.page.enter-left
+{
+	transform:translateX(-100%);
+}
+
+/* ENTER FROM RIGHT */
+
+.page.enter-right
+{
+	transform:translateX(100%);
 }
