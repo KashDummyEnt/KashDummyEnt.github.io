@@ -1,5 +1,5 @@
 // =========================
-// RESPONSIVE SNOW SYSTEM (FIXED)
+// SNOW SYSTEM 
 // =========================
 
 const canvas = document.getElementById("snow");
@@ -9,7 +9,7 @@ let snowflakes = [];
 let lastTime = 0;
 
 // =========================
-// SETTINGS (dynamic)
+// SETTINGS
 // =========================
 
 function getSettings()
@@ -17,9 +17,8 @@ function getSettings()
 	const isMobile = window.innerWidth < 768;
 
 	return {
-		count: isMobile ? 35 : 70,
-		fps: isMobile ? 30 : 60,
-		scale: isMobile ? 0.6 : 1
+		count: isMobile ? 40 : 80,
+		fps: isMobile ? 30 : 60
 	};
 }
 
@@ -29,22 +28,11 @@ function getSettings()
 
 function resizeCanvas()
 {
-	const SETTINGS = getSettings();
-	const scale = SETTINGS.scale;
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
 
-	// internal resolution (performance)
-	canvas.width = window.innerWidth * scale;
-	canvas.height = window.innerHeight * scale;
-
-	// visual size
-	canvas.style.width = window.innerWidth + "px";
-	canvas.style.height = window.innerHeight + "px";
-
-	// reset transform
-	ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-	// apply scale
-	ctx.scale(scale, scale);
+	canvas.style.width = "100%";
+	canvas.style.height = "100%";
 
 	createSnowflakes();
 }
@@ -64,11 +52,11 @@ function createSnowflakes()
 	for (let i = 0; i < SETTINGS.count; i++)
 	{
 		snowflakes.push({
-			x: Math.random() * window.innerWidth,
-			y: Math.random() * window.innerHeight,
-			radius: Math.random() * 2 + 0.8,
-			speedY: Math.random() * 1 + 0.4,
-			speedX: Math.random() * 0.6 - 0.3
+			x: Math.random() * canvas.width,
+			y: Math.random() * canvas.height,
+			radius: Math.random() * 2 + 1,
+			speedY: Math.random() * 1 + 0.5,
+			speedX: Math.random() * 0.5 - 0.25
 		});
 	}
 }
@@ -90,7 +78,7 @@ function updateSnow(time)
 
 	lastTime = time;
 
-	ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	ctx.fillStyle = "white";
 
@@ -99,16 +87,18 @@ function updateSnow(time)
 		flake.y += flake.speedY;
 		flake.x += flake.speedX;
 
-		// reset vertically
-		if (flake.y > window.innerHeight)
+		// reset vertically (random X to prevent stacking)
+		if (flake.y > canvas.height)
 		{
 			flake.y = -5;
-			flake.x = Math.random() * window.innerWidth;
+			flake.x = Math.random() * canvas.width;
 		}
 
-		// wrap horizontally
-		if (flake.x > window.innerWidth) flake.x = 0;
-		if (flake.x < 0) flake.x = window.innerWidth;
+		// reset horizontally (NOT wrap — prevents edge buildup)
+		if (flake.x > canvas.width || flake.x < 0)
+		{
+			flake.x = Math.random() * canvas.width;
+		}
 
 		ctx.beginPath();
 		ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
