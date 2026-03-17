@@ -361,3 +361,16 @@ p
 	filter:brightness(1.15);
 	transition:0.2s;
 }
+
+/* PAGE SWITCHING */
+
+.page
+{
+	display:none;
+	height:100%;
+}
+
+.page.active
+{
+	display:block;
+}
