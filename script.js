@@ -89,7 +89,7 @@ function updateSnow(time)
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	ctx.fillStyle = "red";
+	ctx.fillStyle = "#b100ff";
 
 	for (let flake of snowflakes)
 	{
