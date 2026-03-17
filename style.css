@@ -3,6 +3,7 @@
 /* ========================= */
 
 html,
+html,
 body
 {
 	margin:0;
@@ -11,18 +12,16 @@ body
 	background:#070707;
 	color:white;
 
-	overflow:hidden;              /* lock page scroll */
-	touch-action:none;            /* disable browser gestures */
-	overscroll-behavior:none;     /* prevent bounce + UI triggers */
+	overflow:hidden;
+	touch-action:none;
+	overscroll-behavior:none;
 }
 
 body
 {
 	display:flex;
 	flex-direction:column;
-	overflow:hidden;
-
-	position:relative; /* <-- REQUIRED FIX */
+	position:relative;
 }
 body > *
 {
