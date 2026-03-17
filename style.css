@@ -1,3 +1,5 @@
+/* GLOBAL */
+
 html,
 body
 {
@@ -15,7 +17,7 @@ body
 	overflow:hidden;
 }
 
-/* SCROLL AREA ONLY BELOW HEADER + DIVIDER */
+/* SCROLL AREA */
 
 .content-scroll
 {
@@ -47,101 +49,103 @@ body
 	background:#d44cff;
 }
 
-/* HEADER */
+/* ========================= */
+/* TOP BAR (NEW) */
+/* ========================= */
 
-header
+.topbar
 {
 	display:flex;
-	justify-content:space-between;
 	align-items:center;
-	padding:20px 40px;
+	justify-content:space-between;
+	padding:16px 40px;
+	background:#0d0d0d;
+	border-bottom:2px solid #b100ff;
 	flex-shrink:0;
+
+	position:sticky;
+	top:0;
+	z-index:1000;
 }
 
-.logo img
+/* LEFT */
+
+.topbar .left img
 {
-	height:50px;
-	width:auto;
+	height:45px;
 	display:block;
 }
 
-.home-logo
+/* CENTER NAV */
+
+.topbar .center
 {
-	width:325px;
-	max-width:90%;
-	margin-bottom:-40px;
+	display:flex;
+	gap:40px;
 }
 
+/* NAV LINKS */
 
-.top-contact a
+.nav-link
 {
-	color:white;
 	text-decoration:none;
-	font-size:14px;
+	color:white;
+	font-weight:600;
+	font-size:15px;
+	position:relative;
+	padding:6px 0;
+	transition:0.2s;
 }
 
-.top-contact a:hover
+/* underline hover */
+
+.nav-link::after
+{
+	content:"";
+	position:absolute;
+	left:0;
+	bottom:-4px;
+	width:0%;
+	height:2px;
+	background:#b100ff;
+	transition:0.2s;
+}
+
+.nav-link:hover::after
+{
+	width:100%;
+}
+
+/* active */
+
+.nav-link.active
 {
 	color:#b100ff;
 }
 
-/* DIVIDER */
+/* RIGHT */
 
-.divider
+.topbar .right a
 {
-	width:100%;
-	height:2px;
-	background:#b100ff;
-	flex-shrink:0;
-}
-
-/* NAV BUTTON CONTAINER */
-
-.nav-buttons
-{
-	display:grid;
-	grid-template-columns:repeat(3, 170px);
-	gap:30px;
-	justify-content:center;
-	margin-top:40px;
-	flex-shrink:0;
-}
-
-/* NAV BUTTON */
-
-.nav-btn
-{
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	height:48px;
-	border-radius:8px;
 	text-decoration:none;
-	font-weight:bold;
 	color:white;
-	font-size:16px;
-	background:#2a2a2a;
+	font-size:14px;
 	transition:0.2s;
-	box-sizing:border-box;
 }
 
-.nav-btn:hover
+.topbar .right a:hover
 {
-	transform:translateY(-3px);
-	filter:brightness(1.2);
+	color:#b100ff;
 }
 
-.nav-btn.active
-{
-	background:#b100ff;
-}
-
+/* ========================= */
 /* MAIN CONTENT */
+/* ========================= */
 
 main
 {
 	max-width:900px;
-	margin:5px auto 0 auto;
+	margin:10px auto 0 auto;
 	text-align:center;
 	padding:20px;
 	box-sizing:border-box;
@@ -160,6 +164,19 @@ p
 	line-height:1.6;
 }
 
+/* HOME LOGO */
+
+.home-logo
+{
+	width:325px;
+	max-width:90%;
+	margin-bottom:-40px;
+}
+
+/* ========================= */
+/* WORK LIST */
+/* ========================= */
+
 .work-list
 {
 	list-style:none;
@@ -172,15 +189,9 @@ p
 	font-size:18px;
 }
 
-.project
-{
-	margin:40px 0;
-	padding:60px;
-	border:1px solid #333;
-	border-radius:8px;
-}
-
+/* ========================= */
 /* PROJECT GRID */
+/* ========================= */
 
 .project-grid
 {
@@ -197,13 +208,13 @@ p
 	grid-column:span 2;
 }
 
-/* one card in last row */
+/* last row alignment */
+
 .project-grid > :last-child:nth-child(3n+1)
 {
 	grid-column:3 / span 2;
 }
 
-/* two cards in last row */
 .project-grid > :nth-last-child(2):nth-child(3n+1)
 {
 	grid-column:2 / span 2;
@@ -214,7 +225,9 @@ p
 	grid-column:4 / span 2;
 }
 
+/* ========================= */
 /* PROJECT CARD */
+/* ========================= */
 
 .project-card
 {
@@ -247,7 +260,9 @@ p
 	box-shadow:0 0 15px #b100ff;
 }
 
+/* ========================= */
 /* SOCIAL BUTTONS */
+/* ========================= */
 
 .social-buttons
 {
@@ -327,4 +342,3 @@ p
 	filter:brightness(1.15);
 	transition:0.2s;
 }
-
