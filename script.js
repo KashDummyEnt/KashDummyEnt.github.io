@@ -1,4 +1,31 @@
 // =========================
+// APP HEIGHT LOCK (FIXES MOBILE STRETCH)
+// =========================
+
+function setAppHeight()
+{
+	document.documentElement.style.setProperty(
+		"--app-height",
+		window.innerHeight + "px"
+	);
+}
+
+setAppHeight();
+
+// only update on real resize (not scroll spam)
+let heightTimeout;
+
+window.addEventListener("resize", () =>
+{
+	clearTimeout(heightTimeout);
+
+	heightTimeout = setTimeout(() =>
+	{
+		setAppHeight();
+	}, 200);
+});
+
+// =========================
 // SNOW SYSTEM 
 // =========================
 
@@ -34,7 +61,6 @@ function resizeCanvas(force = false)
 	const newWidth = window.innerWidth;
 	const newHeight = window.innerHeight;
 
-	// only update if width changes OR forced (prevents mobile scroll jitter)
 	if (!force && newWidth === baseWidth)
 	{
 		return;
