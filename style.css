@@ -141,19 +141,26 @@ body > *
 	font-size:15px;
 	position:relative;
 	padding:6px 0;
-	transition:0.2s;
+	cursor:pointer;
+	/* only animate what we actually want */
+	transition: color 0s;
 }
 
 .nav-link::after
 {
 	content:"";
 	position:absolute;
-	left:0;
+
+	left:50%;
 	bottom:-4px;
+
 	width:0%;
 	height:2px;
+
 	background:#b100ff;
-	transition:0.2s;
+
+	transform:translateX(-50%);
+	transition:width 0.2s ease;
 }
 
 .nav-link:hover::after
@@ -191,6 +198,7 @@ p
 {
 	font-size:20px;
 	line-height:1.6;
+	cursor:default;
 }
 
 /* HOME LOGO */
@@ -200,7 +208,7 @@ p
 	width:420px;
 	max-width:90%;
 	margin-top: 10px;
-	margin-bottom:-40px;
+	margin-bottom:-70px;
 }
 
 /* ========================= */
