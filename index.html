@@ -138,5 +138,30 @@
 
 <script src="script.js"></script>
 
+<script>
+	const links = document.querySelectorAll(".nav-link");
+	const pages = document.querySelectorAll(".page");
+
+	links.forEach(link =>
+	{
+		link.addEventListener("click", () =>
+		{
+			const target = link.dataset.page;
+
+			// update active nav
+			links.forEach(l => l.classList.remove("active"));
+			link.classList.add("active");
+
+			// switch pages
+			pages.forEach(page =>
+			{
+				page.classList.remove("active");
+			});
+
+			document.getElementById(target).classList.add("active");
+		});
+	});
+</script>
+
 </body>
 </html>
