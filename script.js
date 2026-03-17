@@ -65,62 +65,170 @@ updateSnow();
 // PAGE NAVIGATION (OPTION 3)
 // =========================
 
-const links = document.querySelectorAll(".nav-link");
-const pages = document.querySelectorAll(".page");
+<!DOCTYPE html>
+<html>
+<head>
+	<title>KashDummyEnt</title>
+	<link rel="stylesheet" href="style.css">
+</head>
 
-const order = ["home", "projects", "experience"];
+<body>
 
-let currentPage = "home";
+<canvas id="snow"></canvas>
 
-function getIndex(page)
-{
-	return order.indexOf(page);
-}
+<header class="topbar">
 
-links.forEach(link =>
-{
-	link.addEventListener("click", () =>
+	<div class="left">
+		<img src="images/kashdummyonlylogo.png" alt="Logo">
+	</div>
+
+	<div class="center">
+		<a class="nav-link active" data-page="home">Home</a>
+		<a class="nav-link" data-page="projects">Projects</a>
+		<a class="nav-link" data-page="experience">Experience</a>
+	</div>
+
+	<div class="right">
+		<a href="https://discord.com/users/202986360259215370" target="_blank">Contact</a>
+	</div>
+
+</header>
+
+<!-- ========================= -->
+<!-- PAGES -->
+<!-- ========================= -->
+
+<div id="pages">
+
+	<!-- HOME -->
+	<section class="page active" id="home">
+
+		<main>
+
+			<img class="home-logo" src="images/kashdummytextlogo.png" alt="KashDummyEnt">
+
+			<p>
+			Roblox systems developer specializing in gameplay scripting,
+			AI systems, anti-cheat systems, and server architecture.
+			</p>
+
+			<div class="social-buttons">
+
+				<a class="social-btn discord" href="https://discord.com/users/202986360259215370" target="_blank">
+					<div class="icon">
+						<img src="images/discord.png" alt="Discord">
+					</div>
+					<div class="label">kashdummy</div>
+				</a>
+
+				<a class="social-btn roblox" href="https://www.roblox.com/users/5032577/profile" target="_blank">
+					<div class="icon">
+						<img src="images/roblox.png" alt="Roblox">
+					</div>
+					<div class="label">kurmpy</div>
+				</a>
+
+			</div>
+
+		</main>
+
+	</section>
+
+	<!-- PROJECTS -->
+	<section class="page" id="projects">
+
+		<div class="content-scroll">
+			<main>
+				<div class="project-grid">
+
+					<div class="project-card">
+						<img src="images/Slenderman.png">
+						<h2>SCP Horror</h2>
+					</div>
+
+					<div class="project-card">
+						<img src="images/ComputerOS.png">
+						<h2>Computer OS</h2>
+					</div>
+
+					<div class="project-card">
+						<img src="images/3DMinimap.png">
+						<h2>3D Minimap</h2>
+					</div>
+
+					<div class="project-card">
+						<img src="images/HVHShooter.png">
+						<h2>HVH Shooter</h2>
+					</div>
+
+					<div class="project-card">
+						<img src="images/MazeGen.png">
+						<h2>Maze Gen / Ai Solver</h2>
+					</div>
+
+					<div class="project-card">
+						<img src="images/MagicSort.png">
+						<h2>Magic Sort</h2>
+					</div>
+
+					<div class="project-card">
+						<img src="images/SuperSmashBlox.png">
+						<h2>Super Smash Blox</h2>
+					</div>
+
+				</div>
+			</main>
+		</div>
+
+	</section>
+
+	<!-- EXPERIENCE -->
+	<section class="page" id="experience">
+
+		<main>
+
+			<h1>Experience</h1>
+
+			<ul class="work-list">
+				<li>Roblox Gameplay Systems Development</li>
+				<li>AI and NPC Behavior Systems</li>
+				<li>Server Architecture and Optimization</li>
+				<li>Anti-Cheat Systems</li>
+				<li>Combat and Ability Systems</li>
+			</ul>
+
+		</main>
+
+	</section>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+	const links = document.querySelectorAll(".nav-link");
+	const pages = document.querySelectorAll(".page");
+
+	links.forEach(link =>
 	{
-		const target = link.dataset.page;
-
-		if (target === currentPage) return;
-
-		const currentEl = document.getElementById(currentPage);
-		const nextEl = document.getElementById(target);
-
-		const currentIndex = getIndex(currentPage);
-		const nextIndex = getIndex(target);
-
-		const goingForward = nextIndex > currentIndex;
-
-		// clear all animation classes
-		pages.forEach(p =>
+		link.addEventListener("click", () =>
 		{
-			p.classList.remove(
-				"active",
-				"exit-left",
-				"exit-right",
-				"enter-left",
-				"enter-right"
-			);
+			const target = link.dataset.page;
+
+			// update active nav
+			links.forEach(l => l.classList.remove("active"));
+			link.classList.add("active");
+
+			// switch pages
+			pages.forEach(page =>
+			{
+				page.classList.remove("active");
+			});
+
+			document.getElementById(target).classList.add("active");
 		});
-
-		// set incoming start position
-		nextEl.classList.add(goingForward ? "enter-right" : "enter-left");
-
-		// force reflow so animation triggers
-		nextEl.offsetHeight;
-
-		// animate current out
-		currentEl.classList.add(goingForward ? "exit-left" : "exit-right");
-
-		// animate next in
-		nextEl.classList.add("active");
-
-		// update nav active state
-		links.forEach(l => l.classList.remove("active"));
-		link.classList.add("active");
-
-		currentPage = target;
 	});
-});
+</script>
+
+</body>
+</html>
