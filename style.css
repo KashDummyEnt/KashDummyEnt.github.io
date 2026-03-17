@@ -83,7 +83,7 @@ body > *
 	display:flex;
 	align-items:center;
 	justify-content:space-between;
-	padding:16px 40px;
+	padding:10px 40px;
 	background:#0d0d0d;
 	border-bottom:2px solid #b100ff;
 	flex-shrink:0;
