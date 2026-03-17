@@ -557,4 +557,14 @@ p
 		font-size:16px;
 		padding:16px;
 	}
+
+	#experience .content-scroll
+	{
+		flex:1;
+		min-height:0;
+		overflow-y:auto;
+
+		-webkit-overflow-scrolling:touch;
+		touch-action:pan-y;
+	}
 }
