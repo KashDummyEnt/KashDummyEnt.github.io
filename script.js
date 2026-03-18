@@ -12,7 +12,6 @@ function setAppHeight()
 
 setAppHeight();
 
-// only update on real resize (not scroll spam)
 let heightTimeout;
 
 window.addEventListener("resize", () =>
@@ -76,13 +75,11 @@ function resizeCanvas(force = false)
 	canvas.style.height = "100%";
 }
 
-// listen for REAL resizes only
 window.addEventListener("resize", () =>
 {
 	resizeCanvas();
 });
 
-// orientation change = force resize
 window.addEventListener("orientationchange", () =>
 {
 	setTimeout(() =>
@@ -92,7 +89,7 @@ window.addEventListener("orientationchange", () =>
 });
 
 // =========================
-// CREATE SNOWFLAKES
+// CREATE SNOWFLAKES (WITH TRANSPARENCY + DEPTH)
 // =========================
 
 function createSnowflakes()
@@ -103,12 +100,23 @@ function createSnowflakes()
 
 	for (let i = 0; i < SETTINGS.count; i++)
 	{
+		const radius = Math.random() * 2.5 + 0.5;
+
+		// depth factor (0 = far, 1 = close)
+		const depth = radius / 3;
+
 		snowflakes.push({
 			x: Math.random() * canvas.width,
 			y: Math.random() * canvas.height,
-			radius: Math.random() * 2 + 1,
-			speedY: Math.random() * 1 + 0.5,
-			speedX: Math.random() * 0.5 - 0.25
+
+			radius: radius,
+
+			// slower when far, faster when close
+			speedY: (Math.random() * 0.8 + 0.3) * (0.5 + depth),
+			speedX: (Math.random() * 0.4 - 0.2) * (0.5 + depth),
+
+			// transparency based on depth
+			alpha: 0.2 + (depth * 0.8)
 		});
 	}
 }
@@ -132,8 +140,6 @@ function updateSnow(time)
 
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	ctx.fillStyle = "white";
-
 	for (let flake of snowflakes)
 	{
 		flake.y += flake.speedY;
@@ -151,6 +157,10 @@ function updateSnow(time)
 		}
 
 		ctx.beginPath();
+
+		// apply transparency per flake
+		ctx.fillStyle = `rgba(255, 255, 255, ${flake.alpha})`;
+
 		ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
 		ctx.fill();
 	}
@@ -159,7 +169,7 @@ function updateSnow(time)
 }
 
 // =========================
-// TOUCH SCROLL LOCK (FIXES MOBILE URL BAR JITTER)
+// TOUCH SCROLL LOCK
 // =========================
 
 document.addEventListener("touchmove", (e) =>
@@ -172,7 +182,6 @@ document.addEventListener("touchmove", (e) =>
 		return;
 	}
 
-	// allow scrolling ONLY if content can actually scroll
 	if (scrollContainer.scrollHeight <= scrollContainer.clientHeight)
 	{
 		e.preventDefault();
