@@ -100,10 +100,11 @@ function createSnowflakes()
 
 	for (let i = 0; i < SETTINGS.count; i++)
 	{
-		const radius = Math.random() * 2.5 + 0.5;
+		// tighter, nicer size range (no microscopic flakes)
+		const radius = Math.random() * 1.8 + 1.2; // 1.2 → 3.0
 
-		// depth factor (0 = far, 1 = close)
-		const depth = radius / 3;
+		// depth factor (normalized)
+		const depth = (radius - 1.2) / (3.0 - 1.2);
 
 		snowflakes.push({
 			x: Math.random() * canvas.width,
@@ -111,12 +112,12 @@ function createSnowflakes()
 
 			radius: radius,
 
-			// slower when far, faster when close
-			speedY: (Math.random() * 0.8 + 0.3) * (0.5 + depth),
-			speedX: (Math.random() * 0.4 - 0.2) * (0.5 + depth),
+			// smoother scaling based on depth
+			speedY: (Math.random() * 0.6 + 0.4) * (0.6 + depth),
+			speedX: (Math.random() * 0.3 - 0.15) * (0.6 + depth),
 
-			// transparency based on depth
-			alpha: 0.2 + (depth * 0.8)
+			// better opacity curve (no invisible flakes)
+			alpha: 0.35 + (depth * 0.65)
 		});
 	}
 }
